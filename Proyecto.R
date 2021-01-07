@@ -98,6 +98,7 @@ dgr_international_movement = barplot(table(international_movement_restrictions),
                                      xlab="Categorias")
 #Diagramas circulares (5 puntos)
 
+
 #2.	(40 Puntos) Estadística descriptiva bivariante o multivariante: 
 #Para las variables cualitativas (10 puntos): 
 
