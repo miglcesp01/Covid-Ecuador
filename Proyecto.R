@@ -1,4 +1,5 @@
 #Cargando datos
+library(corrplot)
 library(modeest)
 library(COVID19)
 data <- covid19(country="Ecuador")
@@ -114,10 +115,17 @@ tests_V_international = boxplot(data$tests ~ data$internal_movement_restrictions
 
 #Para las variables cuantitativas:
 #Matriz de correlación y matriz de covarianzas (5 puntos)
-#Matriz gráfica de correlación (5 puntos)
-datos_cuantitativos = data.frame(data$confirmed,data$recovered,data$deaths,data$tests)
+datos_cuantitativos = data.frame(na.omit(data$confirmed)[0:288],na.omit(data$recovered)[0:288],na.omit(data$deaths)[0:288],na.omit(data$tests))
 matriz_correlacion = cor(datos_cuantitativos)
+matriz_covarianza = cov(datos_cuantitativos)
 print(matriz_correlacion)
+print(matriz_covarianza)
+#Matriz gráfica de correlación (5 puntos)
+pairs(datos_cuantitativos,
+      labels=c("confirmed","recovered","deaths","tests"),
+      pch=21,
+      main="Variables Cuantitativas",
+      font.labels = 1)
 #Intervalo de confianza para la media de una de las variables cuantitativas. (10 puntos)
 #Prueba de hipótesis para establecer si existe diferencia entre la proporción (media) de una de las variables cuantitativas según una de las variables cualitativas. (10 puntos)
 
